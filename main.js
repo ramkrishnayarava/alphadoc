@@ -1,15 +1,15 @@
-const process=require('dotenv');
 const axios = require('axios');
 const mongoose = require('mongoose');
 const cron = require('node-cron');
 const IntradayData=require('./model/IntraSchema');
+const { CONTANTS } = require('./constant');
 // Replace with your MongoDB connection string
-const mongoDBConnectionString = '';
+const mongoDBConnectionString = 'YOUR_MONGO_DB_CONNECTION_STRING';
 
 mongoose.connect(mongoDBConnectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const apiBaseURL = 'https://www.alphavantage.co/query'; // Replace with the actual API base URL
-const apiKey = process.env.API;
+const apiKey = CONTANTS.API;
 const symbol = 'IBM';
 const interval = '1min';
 
@@ -74,4 +74,4 @@ cron.schedule('*/1 * * * *', async () => {
 });
 
 // Uncomment the line below if you want to run the task immediately
-// fetchAndStoreData();
+fetchAndStoreData();
