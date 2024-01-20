@@ -1,3 +1,4 @@
+const process=require('dotenv');
 const express = require('express');
 const axios = require('axios');
 const {CONTANTS}=require("./constant");
@@ -29,7 +30,7 @@ app.get('/time-series-intraday', async (req, res) => {
         month:month,
         outputsize:outputsize,
         datatype:datatype,
-        apikey:CONTANTS.API,
+        apikey:process.env.API,
       },
      
     });

@@ -1,25 +1,15 @@
+const process=require('dotenv');
 const axios = require('axios');
 const mongoose = require('mongoose');
 const cron = require('node-cron');
 const IntradayData=require('./model/IntraSchema');
 // Replace with your MongoDB connection string
-const mongoDBConnectionString = 'mongodb+srv://dbuser:082th6DI43x97AMz@bnb-moralis-mongodb-e40ff12c.mongo.ondigitalocean.com/alpha?tls=true&authSource=admin&replicaSet=bnb-moralis-mongodb';
+const mongoDBConnectionString = '';
 
 mongoose.connect(mongoDBConnectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// const IntradayDataSchema = new mongoose.Schema({
-//   timestamp: { type: Date, required: true },
-//   open: { type: Number, required: true },
-//   high: { type: Number, required: true },
-//   low: { type: Number, required: true },
-//   close: { type: Number, required: true },
-//   volume: { type: Number, required: true },
-// });
-
-// const IntradayData = mongoose.model('IntradayData', IntradayDataSchema);
-
 const apiBaseURL = 'https://www.alphavantage.co/query'; // Replace with the actual API base URL
-const apiKey = '2C6PCJGHOEC5MEZE';
+const apiKey = process.env.API;
 const symbol = 'IBM';
 const interval = '1min';
 
